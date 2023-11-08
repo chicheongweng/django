@@ -2,6 +2,7 @@ import django.contrib.auth.models
 from django.contrib.auth import validators
 from django.db import migrations, models
 from django.utils import timezone
+import uuid
 
 
 class Migration(migrations.Migration):
@@ -132,6 +133,10 @@ class Migration(migrations.Migration):
                     models.CharField(
                         max_length=30, verbose_name="last name", blank=True
                     ),
+                ),
+                (
+                    "uuid",
+                     models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
                 ),
                 (
                     "email",

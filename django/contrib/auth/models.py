@@ -12,7 +12,7 @@ from django.utils.itercompat import is_iterable
 from django.utils.translation import gettext_lazy as _
 
 from .validators import UnicodeUsernameValidator
-
+import uuid
 
 def update_last_login(sender, user, **kwargs):
     """
@@ -355,6 +355,7 @@ class AbstractUser(AbstractBaseUser, PermissionsMixin):
     )
     first_name = models.CharField(_("first name"), max_length=150, blank=True)
     last_name = models.CharField(_("last name"), max_length=150, blank=True)
+    uuid = models.UUIDField(_('uuid'), unique=True, default=uuid.uuid4, editable=True)
     email = models.EmailField(_("email address"), blank=True)
     is_staff = models.BooleanField(
         _("staff status"),
@@ -374,6 +375,7 @@ class AbstractUser(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     EMAIL_FIELD = "email"
+    UUID_FIELD = "uuid"
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = ["email"]
 
