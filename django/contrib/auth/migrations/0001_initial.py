@@ -136,7 +136,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "uuid",
-                     models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
+                     models.UUIDField(default=uuid.uuid4, unique=True, verbose_name='uuid'),
                 ),
                 (
                     "email",
